@@ -97,6 +97,8 @@ export default (() => {
             return resource
           }
         })}
+        {/* Interventions pirates — Nova 7 & Renégats détournent l'onde officielle. */}
+        <script defer src={joinSegments(baseDir, "static/pirate.js")}></script>
       </head>
     )
   }
