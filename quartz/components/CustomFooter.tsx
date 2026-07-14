@@ -7,11 +7,20 @@ const CustomFooter: QuartzComponent = () => {
       <div class="oblique-quote">
         <span class="oblique-label">▸ stratégie oblique</span>
         <span class="oblique-text">« {obliqueQuote} »</span>
-        <a href="https://robotariis-sessions.fly.dev/obliques" target="_blank" class="oblique-link">↗</a>
+        <a href="https://sessions.robotariis.com/obliques" target="_blank" class="oblique-link">↗</a>
       </div>
       <div class="radio-link">
         <span class="radio-label">▸ webradio</span>
-        <a href="https://radio.robotariis.com/public/robotariis-radio" target="_blank" class="radio-url">radio.robotariis.com ↗</a>
+        <a href="https://radio.robotariis.com/" target="_blank" class="radio-url">radio.robotariis.com ↗</a>
+        <span class="radio-hint">en direct, 24 h/24</span>
+      </div>
+      <div class="circuit-link">
+        <span class="circuit-label">▸ l'univers</span>
+        <a href="https://obareau.github.io/Recta/" target="_blank" title="Communiqués de l'Oraculum — générateur d'affiches">Recta</a>
+        <span class="circuit-sep">·</span>
+        <a href="https://obareau.github.io/quidam/" target="_blank" title="Portraits pixel-art des personnages">Quidam</a>
+        <span class="circuit-sep">·</span>
+        <a href="https://obareau.github.io/robotariis-hub/" target="_blank" title="Portail de l'écosystème">Hub</a>
       </div>
       <div class="footer-sig">
         <span>Auteur OLIVIER BAREAU</span>
@@ -109,6 +118,44 @@ footer {
 
 .radio-url:hover {
   color: var(--dark);
+}
+
+.radio-hint {
+  color: var(--tertiary);
+  font-size: 0.68rem;
+  opacity: 0.7;
+}
+
+.circuit-link {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  font-family: var(--codeFont);
+  font-size: 0.78rem;
+}
+
+.circuit-label {
+  color: var(--tertiary);
+  white-space: nowrap;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-right: 0.15rem;
+}
+
+.circuit-link a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.circuit-link a:hover {
+  color: var(--dark);
+}
+
+.circuit-sep {
+  color: var(--tertiary);
+  opacity: 0.4;
 }
 `
 
