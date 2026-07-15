@@ -16,11 +16,19 @@ const CustomFooter: QuartzComponent = () => {
       </div>
       <div class="circuit-link">
         <span class="circuit-label">▸ l'univers</span>
+        {" "}
         <a href="https://obareau.github.io/Recta/" target="_blank" title="Communiqués de l'Oraculum — générateur d'affiches">Recta</a>
-        <span class="circuit-sep">·</span>
+        <span class="circuit-sep">{" // "}</span>
         <a href="https://obareau.github.io/quidam/" target="_blank" title="Portraits pixel-art des personnages">Quidam</a>
-        <span class="circuit-sep">·</span>
+        <span class="circuit-sep">{" // "}</span>
+        <a href="https://obareau.github.io/mono/" target="_blank" title="Atelier d'image 1-bit — dithers, trames, halftone">MONO°</a>
+        <span class="circuit-sep">{" // "}</span>
         <a href="https://obareau.github.io/robotariis-hub/" target="_blank" title="Portail de l'écosystème">Hub</a>
+        <span class="circuit-sep">{" // "}</span>
+        {/* Le seul lien du site qui propose quelque chose au lieu de le montrer :
+            tout le reste — radio, communiqués, cartes, atelier — est gratuit et
+            sans contrepartie. */}
+        <a href="https://www.redbubble.com/fr/shop/ap/182247657?ref=studio-promote" target="_blank" title="T-shirts et goodies Robōtariis">Boutique</a>
       </div>
       <div class="footer-sig">
         <span>Auteur OLIVIER BAREAU</span>
@@ -129,7 +137,7 @@ footer {
 .circuit-link {
   display: flex;
   align-items: baseline;
-  gap: 0.45rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
   font-family: var(--codeFont);
   font-size: 0.78rem;
@@ -141,7 +149,7 @@ footer {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-right: 0.15rem;
+  margin-right: 0.5rem;
 }
 
 .circuit-link a {

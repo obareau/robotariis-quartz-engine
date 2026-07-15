@@ -1,2 +1,2 @@
-const obliqueQuote = "Moins de sources. Plus de profondeur."
+const obliqueQuote = "Joue plus lentement que tu ne le penses nécessaire."
 export default obliqueQuote

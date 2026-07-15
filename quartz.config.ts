@@ -8,47 +8,61 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
+    pageTitle: "∎ ROBŌTARIIS",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
+    // GoatCounter auto-hébergé sur Roblab (:8127, exposé par le tunnel
+    // Cloudflare en stats.robotariis.com). Sans cookie, donc aucune bannière
+    // RGPD à afficher, et les visites restent à la maison.
+    //
+    // Quartz compose l'endpoint en `https://{websiteId}.{host}/count` — d'où le
+    // découpage "stats" + "robotariis.com". scriptSrc pointe sur notre propre
+    // instance : sans lui, Quartz irait chercher gc.zgo.at.
+    //
+    // Remplace Plausible, déclaré ici depuis le début : le script partait bien,
+    // mais vers un compte plausible.io/robotariis.com qui n'a jamais existé
+    // (404). Le tuyau était branché sur rien — aucune visite n'a été comptée.
     analytics: {
-      provider: "plausible",
+      provider: "goatcounter",
+      websiteId: "stats",
+      host: "robotariis.com",
+      scriptSrc: "https://stats.robotariis.com/count.js",
     },
-    locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
+    locale: "fr-FR",
+    baseUrl: "robotariis.com",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        header: "IBM Plex Mono",
+        body: "IBM Plex Mono",
         code: "IBM Plex Mono",
       },
       colors: {
         lightMode: {
-          light: "#faf8f8",
-          lightgray: "#e5e5e5",
-          gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          light: "#1a1200",
+          lightgray: "#2e2200",
+          gray: "#6b4f00",
+          darkgray: "#c8860a",
+          dark: "#ffaa00",
+          secondary: "#ff8c00",
+          tertiary: "#ffc84a",
+          highlight: "rgba(255, 170, 0, 0.12)",
+          textHighlight: "#ffaa0044",
         },
         darkMode: {
-          light: "#161618",
-          lightgray: "#393639",
-          gray: "#646464",
-          darkgray: "#d4d4d4",
-          dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          light: "#0d0b00",
+          lightgray: "#1e1800",
+          gray: "#5a4400",
+          darkgray: "#c8860a",
+          dark: "#ffaa00",
+          secondary: "#ff8c00",
+          tertiary: "#ffc84a",
+          highlight: "rgba(255, 170, 0, 0.10)",
+          textHighlight: "#ffaa0044",
         },
       },
     },
