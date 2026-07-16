@@ -31,6 +31,7 @@ const CustomFooter: QuartzComponent = () => {
         <a href="https://www.redbubble.com/fr/shop/ap/182247657?ref=studio-promote" target="_blank" title="T-shirts et goodies Robōtariis">Boutique</a>
       </div>
       <div class="footer-sig">
+        <a href="/Soutenir">soutenir</a>
         <span>Auteur OLIVIER BAREAU</span>
         <span class="formula">[O/o] = R+[0.9] +&#123;ob*1&#125;</span>
         <a href="mailto:olivier@robotariis.com">olivier@robotariis.com</a>
