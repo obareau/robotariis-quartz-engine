@@ -14,6 +14,17 @@ const CustomFooter: QuartzComponent = () => {
         <a href="https://radio.robotariis.com/" target="_blank" class="radio-url">radio.robotariis.com ↗</a>
         <span class="radio-hint">en direct, 24 h/24</span>
       </div>
+      {/* Deep Dive — conversations générées par NotebookLM à partir des notes
+          de lore. Les deux plateformes servent les mêmes 16 épisodes ; on les
+          donne toutes les deux plutôt que d'arbitrer à la place du lecteur. */}
+      <div class="circuit-link">
+        <span class="circuit-label">▸ podcast</span>
+        {" "}
+        <a href="https://open.spotify.com/show/5j6S5ThWP4SghPcZa5J3If" target="_blank" title="Deep Dive — conversations générées à partir des notes de lore">Spotify</a>
+        <span class="circuit-sep">{" // "}</span>
+        <a href="https://www.youtube.com/@robotariis" target="_blank" title="Les mêmes épisodes, en vidéo">YouTube</a>
+        <span class="radio-hint">saison 2025</span>
+      </div>
       <div class="circuit-link">
         <span class="circuit-label">▸ l'univers</span>
         {" "}
