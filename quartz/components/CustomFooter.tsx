@@ -30,6 +30,18 @@ const CustomFooter: QuartzComponent = () => {
             sans contrepartie. */}
         <a href="https://www.redbubble.com/fr/shop/ap/182247657?ref=studio-promote" target="_blank" title="T-shirts et goodies Robōtariis">Boutique</a>
       </div>
+      {/* Mention de transparence IA — art. 50(4) du règlement (UE) 2024/1689.
+          L'alinéa sur les œuvres de fiction réduit l'obligation à signaler
+          l'existence du contenu généré « d'une manière appropriée qui n'entrave
+          pas la jouissance de l'œuvre » : une ligne de pied de page, donc, et
+          pas un bandeau. */}
+      <div class="ia-notice">
+        <span class="ia-label">▸ transparence</span>
+        {" "}
+        <span class="ia-text">la webradio est entièrement générée par IA — le reste du site est procédural.</span>
+        {" "}
+        <a href="/transparence" class="ia-link">ce qui l'est, ce qui ne l'est pas</a>
+      </div>
       <div class="footer-sig">
         <a href="/Soutenir">soutenir</a>
         <span>Auteur OLIVIER BAREAU</span>
@@ -165,6 +177,35 @@ footer {
 .circuit-sep {
   color: var(--tertiary);
   opacity: 0.4;
+}
+
+.ia-notice {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-family: var(--codeFont);
+  font-size: 0.72rem;
+  color: var(--gray);
+}
+
+.ia-label {
+  color: var(--tertiary);
+  white-space: nowrap;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ia-link {
+  color: var(--gray);
+  text-decoration: underline;
+  text-decoration-color: var(--tertiary);
+  text-underline-offset: 0.2em;
+}
+
+.ia-link:hover {
+  color: var(--secondary);
 }
 `
 
