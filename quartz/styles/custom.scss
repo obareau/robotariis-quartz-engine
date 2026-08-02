@@ -214,3 +214,26 @@ hr {
   text-transform: uppercase;
   margin-bottom: 1.2rem;
 }
+
+
+/* ── Justesse ──────────────────────────────────────────────────────────────
+   La colonne centrale faisait 860 px, soit ~85 signes par ligne — au-dessus
+   de la zone de confort (45–75, ideal 65). En monospace, ou chaque signe a la
+   meme chasse, `ch` vaut exactement une lettre : 70ch avec le letter-spacing
+   de 0.03em donne ~67 signes reels. On resserre toute la colonne (titre
+   compris) pour que rien ne se desaligne. */
+.page > #quartz-body .center {
+  /* base.scss impose `min-width: 100%` via un selecteur portant un ID
+     (.page > #quartz-body .center) : il l emporte a la fois en specificite et,
+     en CSS, min-width prime sur max-width. Il faut donc egaler la specificite
+     ET neutraliser le min-width, sinon la regle est presente mais sans effet. */
+  min-width: 0;
+  max-width: 70ch;
+
+  /* en dessous du pli tablette, on rend toute la largeur : resserrer sur
+     petit ecran ne ferait qu ajouter des marges inutiles */
+  @media all and (max-width: 1200px) {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
