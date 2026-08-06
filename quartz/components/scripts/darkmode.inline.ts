@@ -1,10 +1,11 @@
-// Le CLAIR est le thème par défaut de robotariis.com — le parchemin, pas le
-// terminal. On ignore donc délibérément `prefers-color-scheme` : un visiteur
-// dont l'OS est en sombre arrive quand même sur le parchemin. Seul un choix
-// explicite (le bouton, mémorisé en localStorage) fait basculer.
-// ⚠️ Divergence avec l'amont, qui suit la préférence système. Ne pas
-// « rétablir » sans décision.
-const currentTheme = localStorage.getItem("theme") ?? "light"
+// Le site suit la préférence système au premier passage : un visiteur dont
+// l'OS est en sombre arrive sur le terminal ambre, les autres sur le
+// parchemin. `localStorage` ne contient une valeur QUE si le visiteur a
+// cliqué le bouton — un choix explicite, qui l'emporte pour toujours.
+const systemTheme = (): "light" | "dark" =>
+  window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
+
+const currentTheme = localStorage.getItem("theme") ?? systemTheme()
 document.documentElement.setAttribute("saved-theme", currentTheme)
 
 const emitThemeChangeEvent = (theme: "light" | "dark") => {
@@ -23,14 +24,25 @@ document.addEventListener("nav", () => {
     emitThemeChangeEvent(newTheme)
   }
 
+  // Suivre l'OS en direct, mais seulement tant que le visiteur n'a rien choisi.
+  // ⚠️ Deux écarts volontaires avec l'amont, qui a ici un vrai bug : son
+  // handler écrit dans `localStorage` à chaque bascule de l'OS, donc quelqu'un
+  // ayant cliqué « sombre » repassait en clair au lever du jour si son système
+  // est en mode automatique. On sort donc si une clé existe, et on n'écrit
+  // jamais depuis cet écouteur — la clé reste la trace du seul choix explicite.
+  const themeChange = (e: MediaQueryListEvent) => {
+    if (localStorage.getItem("theme") !== null) return
+    const newTheme = e.matches ? "dark" : "light"
+    document.documentElement.setAttribute("saved-theme", newTheme)
+    emitThemeChangeEvent(newTheme)
+  }
+
   for (const darkmodeButton of document.getElementsByClassName("darkmode")) {
     darkmodeButton.addEventListener("click", switchTheme)
     window.addCleanup(() => darkmodeButton.removeEventListener("click", switchTheme))
   }
 
-  // ⚠️ L'écoute de `prefers-color-scheme` a été RETIRÉE, et pas seulement
-  // parce que le clair est désormais le défaut : le handler amont écrivait
-  // dans localStorage à chaque bascule de l'OS, écrasant donc un choix
-  // explicite du visiteur. Quelqu'un ayant cliqué « sombre » repassait en
-  // clair au lever du jour si son système est en mode automatique.
+  const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+  colorSchemeMediaQuery.addEventListener("change", themeChange)
+  window.addCleanup(() => colorSchemeMediaQuery.removeEventListener("change", themeChange))
 })
