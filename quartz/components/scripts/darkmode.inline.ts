@@ -1,5 +1,10 @@
-const userPref = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"
-const currentTheme = localStorage.getItem("theme") ?? userPref
+// Le CLAIR est le thème par défaut de robotariis.com — le parchemin, pas le
+// terminal. On ignore donc délibérément `prefers-color-scheme` : un visiteur
+// dont l'OS est en sombre arrive quand même sur le parchemin. Seul un choix
+// explicite (le bouton, mémorisé en localStorage) fait basculer.
+// ⚠️ Divergence avec l'amont, qui suit la préférence système. Ne pas
+// « rétablir » sans décision.
+const currentTheme = localStorage.getItem("theme") ?? "light"
 document.documentElement.setAttribute("saved-theme", currentTheme)
 
 const emitThemeChangeEvent = (theme: "light" | "dark") => {
@@ -18,20 +23,14 @@ document.addEventListener("nav", () => {
     emitThemeChangeEvent(newTheme)
   }
 
-  const themeChange = (e: MediaQueryListEvent) => {
-    const newTheme = e.matches ? "dark" : "light"
-    document.documentElement.setAttribute("saved-theme", newTheme)
-    localStorage.setItem("theme", newTheme)
-    emitThemeChangeEvent(newTheme)
-  }
-
   for (const darkmodeButton of document.getElementsByClassName("darkmode")) {
     darkmodeButton.addEventListener("click", switchTheme)
     window.addCleanup(() => darkmodeButton.removeEventListener("click", switchTheme))
   }
 
-  // Listen for changes in prefers-color-scheme
-  const colorSchemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-  colorSchemeMediaQuery.addEventListener("change", themeChange)
-  window.addCleanup(() => colorSchemeMediaQuery.removeEventListener("change", themeChange))
+  // ⚠️ L'écoute de `prefers-color-scheme` a été RETIRÉE, et pas seulement
+  // parce que le clair est désormais le défaut : le handler amont écrivait
+  // dans localStorage à chaque bascule de l'OS, écrasant donc un choix
+  // explicite du visiteur. Quelqu'un ayant cliqué « sombre » repassait en
+  // clair au lever du jour si son système est en mode automatique.
 })
