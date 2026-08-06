@@ -85,6 +85,10 @@ table thead:empty {
 // ── Callouts ──────────────────────────────────────────────────────────────────
 
 .callout {
+  // ⚠️ Quartz code une couleur en dur par TYPE de callout (--border: #448aff44
+  // pour « note », etc.). Invisible sur fond noir, franchement bleue sur
+  // parchemin. On reprend les trois autres côtés avant de poser le liseré.
+  border: 1px solid var(--lightgray);
   border-left: 3px solid var(--secondary);
   background-color: var(--highlight);
   padding: 0.8rem 1rem;
