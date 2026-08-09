@@ -161,6 +161,69 @@ hr {
   color: var(--tertiary);
 }
 
+/* Les titres d'articles se noyaient : l'amont les rend tous en `opacity: 0.75`
+   sans marqueur, donc une colonne de gris à interlignage serré où plus rien ne
+   se détache. Trois corrections, dans l'ordre de ce qui pèse le plus :
+
+   1. une puce, qui donne à l'œil un point d'accroche par ligne ;
+   2. de l'air entre les entrées — c'est ce qui fait le plus de travail ;
+   3. plus de contraste sur le texte, l'opacité de l'amont étant trop basse.
+
+   ⚠️ On ne cible QUE les fichiers. Un dossier n'est pas un `<a>` dans le DOM de
+   Quartz — c'est `div.folder-container > button > span.folder-title` — donc
+   `li > a` ne l'atteint jamais. Vérifié dans le HTML rendu, pas supposé. */
+.explorer ul li > a {
+  display: block;
+  position: relative;
+  padding: 0.3rem 0 0.3rem 0.9rem;
+  opacity: 0.9; // l'amont met 0.75 : trop faible pour distinguer 35 titres
+  line-height: 1.35;
+  border-bottom: none;
+  transition: opacity 0.12s ease, color 0.12s ease;
+}
+
+.explorer ul li > a::before {
+  content: "▪";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  font-size: 0.7em;
+  line-height: 1.95;
+  color: var(--gray);
+  transition: color 0.12s ease;
+}
+
+.explorer ul li > a:hover {
+  opacity: 1;
+  color: var(--secondary);
+  border-bottom: none;
+}
+
+.explorer ul li > a:hover::before,
+.explorer ul li > a.active::before {
+  color: var(--secondary);
+}
+
+/* ⚠️ Un titre sur trois lignes reste collé au suivant si l'on ne compte que
+   sur le padding : la respiration doit être PLUS GRANDE que l'interligne,
+   sinon deux entrées longues se lisent comme un seul bloc. */
+.explorer ul li + li {
+  margin-top: 0.08rem;
+}
+
+/* La page courante doit se repérer sans lire : puce pleine et texte appuyé. */
+.explorer ul li > a.active {
+  opacity: 1;
+  font-weight: 600;
+}
+
+/* Un peu d'air sous chaque dossier, sinon le premier article colle à son
+   titre de section et on lit un seul bloc. */
+.explorer .folder-outer > ul {
+  padding-top: 0.15rem;
+  padding-bottom: 0.5rem;
+}
+
 // ── Landing page ──────────────────────────────────────────────────────────────
 
 .index-sig {
