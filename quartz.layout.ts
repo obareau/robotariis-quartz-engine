@@ -1,6 +1,7 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 import CustomFooter from "./quartz/components/CustomFooter"
+import CustomPageTitle from "./quartz/components/CustomPageTitle"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -22,7 +23,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.TagList(),
   ],
   left: [
-    Component.PageTitle(),
+    CustomPageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Flex({
       components: [
@@ -56,7 +57,7 @@ export const defaultContentPageLayout: PageLayout = {
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
   left: [
-    Component.PageTitle(),
+    CustomPageTitle(),
     Component.MobileOnly(Component.Spacer()),
     Component.Flex({
       components: [
