@@ -304,3 +304,28 @@ hr {
     max-width: 100%;
   }
 }
+
+// ── Couvertures de la saga ────────────────────────────────────────────────────
+// Sept images de 300 px n'entrent pas dans une colonne de 750. Un tableau les
+// écrase ou les fait déborder selon le navigateur ; une grille les range et
+// se replie toute seule sur mobile.
+
+.couvertures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 0.6rem;
+  margin: 1.4rem 0;
+}
+
+.couvertures img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 3px;
+  border: 1px solid var(--lightgray);
+  transition: transform 0.16s ease;
+}
+
+.couvertures img:hover {
+  transform: translateY(-3px);
+}
