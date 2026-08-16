@@ -99,6 +99,8 @@ export default (() => {
         })}
         {/* Interventions pirates — Nova 7 & Renégats détournent l'onde officielle. */}
         <script defer src={joinSegments(baseDir, "static/pirate.js")}></script>
+        {/* Lecture de la saga — reprise de position et réglages typo, tout en local. */}
+        <script defer src={joinSegments(baseDir, "static/saga-reader.js")}></script>
       </head>
     )
   }
